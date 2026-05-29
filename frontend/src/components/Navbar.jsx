@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <nav style={styles.nav}>
       {/* Logo */}
-      <h2 style={styles.logo}>TestBooster</h2>
+      <h2 style={styles.logo}>GATEProCS</h2>
 
       {/* Links */}
       <div style={styles.links}>

@@ -3,23 +3,6 @@ import questions from "./Questions/TodayQuestion";
 
 function TestInterface() {
 
-//   const questions = [
-//     {
-//       id: 1,
-//       question: "What is the time complexity of Binary Search?",
-//       options: ["O(n)", "O(log n)", "O(n²)", "O(1)"],
-//     },
-//     {
-//       id: 2,
-//       question: "Which layer handles routing?",
-//       options: [
-//         "Transport Layer",
-//         "Application Layer",
-//         "Network Layer",
-//         "Data Link Layer",
-//       ],
-//     },
-//   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});

@@ -4,6 +4,7 @@ const app = express();
 require("dotenv").config();
 const ConnectDB = require("./src/database")
 const User = require('./src/user')
+const Question = require('./src/question')
 
 ConnectDB();
 app.use(cors());
@@ -60,7 +61,24 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/add-question", async (req, res) => {
+  try {
+    const question = new Question(req.body);
 
+    await question.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Question Added Successfully",
+      data: question,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 
 app.listen(port, ()=>{
     console.log("server is running on port "+ port)
