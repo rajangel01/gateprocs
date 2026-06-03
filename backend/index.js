@@ -80,6 +80,22 @@ app.post("/add-question", async (req, res) => {
   }
 });
 
+app.get("/all-questions", async (req, res) => {
+  try {
+    const questions = await Question.find();
+
+    res.status(200).json({
+      success: true,
+      questions,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+
 app.listen(port, ()=>{
     console.log("server is running on port "+ port)
 })

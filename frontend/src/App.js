@@ -10,7 +10,8 @@ import UserHome from './components/UserHome';
 import UserDashboard from './components/UserDashboard';
 import Tests from './components/Tests';
 import TestInterface from './components/TestInterface';
-import AddQuestion from './components/Admin/AddQuestion'
+import AddQuestion from './components/Admin/AddQuestion';
+import UserProfile from './components/UserProfile';
 
 function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -29,6 +30,7 @@ function App() {
       <Route path='/admin' element={<Admin/>} />
       <Route path='/testinterface' element={<TestInterface/>} />
       <Route path='/add-questions' element={<AddQuestion/>}/>
+      <Route path='/user-profile' element={<UserProfile/>}/>
     </Routes>
     </BrowserRouter>
   );
