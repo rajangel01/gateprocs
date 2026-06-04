@@ -1,10 +1,11 @@
-const express = require("express")
+const express = require("express");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
-const ConnectDB = require("./src/database")
-const User = require('./src/user')
-const Question = require('./src/question')
+const ConnectDB = require("./src/database");
+const User = require("./src/user");
+const Question = require("./src/question");
+let Counter = require("./src/counter");
 
 ConnectDB();
 app.use(cors());
@@ -12,11 +13,23 @@ app.use(express.json());
 
 const port = process.env.PORT || 8080;
 
+// Counter Function
+async function getNextUserId() {
+  const counter = await Counter.findByIdAndUpdate(
+    "userId",
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true },
+  );
+
+  return counter.seq;
+}
 
 // User signup API
 app.post("/signup", async (req, res) => {
   try {
     // const { name, number, email, address, password } = req.body;
+    const newUserId = await getNextUserId();
+    const userId = newUserId;
     const name = req.body.name;
     const number = req.body.number;
     const email = req.body.email;
@@ -29,11 +42,12 @@ app.post("/signup", async (req, res) => {
 
     // create user
     const newUser = new User({
+      userId,
       name,
       number,
       email,
       address,
-      password
+      password,
     });
 
     await newUser.save();
@@ -50,12 +64,10 @@ app.post("/login", async (req, res) => {
     const password = req.body.password;
 
     // check user
-    const user = await User.findOne({ email,password });
+    const user = await User.findOne({ email, password });
     if (!user) return res.status(400).json({ msg: "Invalid credentials" });
 
-
     res.send(user);
-
   } catch (err) {
     res.status(500).send("Server Error");
   }
@@ -96,6 +108,6 @@ app.get("/all-questions", async (req, res) => {
   }
 });
 
-app.listen(port, ()=>{
-    console.log("server is running on port "+ port)
-})
+app.listen(port, () => {
+  console.log("server is running on port " + port);
+});

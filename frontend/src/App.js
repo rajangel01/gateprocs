@@ -12,6 +12,10 @@ import Tests from './components/Tests';
 import TestInterface from './components/TestInterface';
 import AddQuestion from './components/Admin/AddQuestion';
 import UserProfile from './components/UserProfile';
+import TestHistory from './components/TestHistory';
+import DailyLeaderboard from './components/DailyLeaderboard';
+import MonthlyLeaderboard from './components/MonthlyLeaderboard';
+import Leaderboard from './components/Leaderboard';
 
 function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -31,6 +35,10 @@ function App() {
       <Route path='/testinterface' element={<TestInterface/>} />
       <Route path='/add-questions' element={<AddQuestion/>}/>
       <Route path='/user-profile' element={<UserProfile/>}/>
+      <Route path='/test-history' element={<TestHistory/>}/>
+      <Route path='/daily-leaderboard' element={<DailyLeaderboard/>}/>
+      <Route path='/monthly-leaderboard' element={<MonthlyLeaderboard/>}/>
+      <Route path='/leaderboard' element={<Leaderboard/>}/>
     </Routes>
     </BrowserRouter>
   );

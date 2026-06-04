@@ -1,9 +1,12 @@
 import React from 'react'
 
 const UserProfile = () => {
+  const userData = JSON.parse(
+  localStorage.getItem("isLoggedIn")
+);
   const user = {
-    name: "Raj Kumar",
-    email: "raj@gmail.com",
+    name: userData.name,
+    email: userData.email,
     photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqf0Wx4wmsKfLYsiLdBx6H4D8bwQBurWhx5g&s",
     rank: 25,
     tests: 48,
